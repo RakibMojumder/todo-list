@@ -2,8 +2,7 @@ import { useTodoContext } from "../context/TodoProvider";
 import OngoingTodo from "./OngoingTodo";
 
 const OngoingTodos = () => {
-  const { todos } = useTodoContext();
-  const ongoingTodos = todos.filter((td) => td.status === "Ongoing");
+  const { ongoingTodos } = useTodoContext();
 
   return (
     <>

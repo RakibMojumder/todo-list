@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useTodoContext } from "../context/TodoProvider";
 import EditTodoModal from "./modal/EditTodoModal";
 import DeleteTodoModal from "./modal/DeleteTodoModal";
+import { AnimatePresence } from "framer-motion";
+import { toast } from "sonner";
 
 const OngoingTodo = ({ todo, index }) => {
   const { todos, setTodos } = useTodoContext();
@@ -17,6 +19,7 @@ const OngoingTodo = ({ todo, index }) => {
     const newTodos = [...filteredTodo, updatedTodo];
     setTodos(newTodos);
     localStorage.setItem("todos", JSON.stringify(newTodos));
+    toast.success("Successfully complete the task");
   };
 
   return (
@@ -63,14 +66,21 @@ const OngoingTodo = ({ todo, index }) => {
       </tr>
 
       {/* EDIT MODAL */}
-      {openEditModal && (
-        <EditTodoModal todo={todo} setOpenEditModal={setOpenEditModal} />
-      )}
+      <AnimatePresence>
+        {openEditModal && (
+          <EditTodoModal todo={todo} setOpenEditModal={setOpenEditModal} />
+        )}
+      </AnimatePresence>
 
       {/* DELETE MODAL */}
-      {openDeleteModal && (
-        <DeleteTodoModal todo={todo} setOpenDeleteModal={setOpenDeleteModal} />
-      )}
+      <AnimatePresence>
+        {openDeleteModal && (
+          <DeleteTodoModal
+            todo={todo}
+            setOpenDeleteModal={setOpenDeleteModal}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 };

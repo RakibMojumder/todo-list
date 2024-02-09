@@ -3,14 +3,20 @@ import TodoForm from "../TodoForm";
 import { useState } from "react";
 import { useTodoContext } from "../../context/TodoProvider";
 import ModalContainer from "./ModalContainer";
+import { toast } from "sonner";
 
-const AddTodoModal = ({ setIsOpen }) => {
+const AddTodoModal = ({ setActiveTab }) => {
   const { setTodos } = useTodoContext();
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState("");
 
   const handleAddTodo = (e) => {
     e.preventDefault();
+
+    if (!title || !priority) {
+      return toast.error("All fields are required");
+    }
+
     const data = localStorage.getItem("todos");
     const todos = JSON.parse(data);
     let newTodos;
@@ -28,14 +34,12 @@ const AddTodoModal = ({ setIsOpen }) => {
       setTodos(newTodos);
     }
 
-    setIsOpen((prev) => !prev);
+    toast.success("Todo added successfully");
+    setActiveTab("Todos");
   };
 
   return (
-    <ModalContainer
-      title="Add Todo"
-      handleClose={() => setIsOpen((prev) => !prev)}
-    >
+    <ModalContainer title="Add Todo" handleClose={() => setActiveTab("Todos")}>
       <TodoForm
         title={title}
         priority={priority}

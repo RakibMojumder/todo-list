@@ -1,5 +1,6 @@
 import { useTodoContext } from "../../context/TodoProvider";
 import ModalContainer from "./ModalContainer";
+import { toast } from "sonner";
 
 const DeleteTodoModal = ({ todo, setOpenDeleteModal }) => {
   const { todos, setTodos } = useTodoContext();
@@ -8,16 +9,17 @@ const DeleteTodoModal = ({ todo, setOpenDeleteModal }) => {
     const filteredTodo = todos.filter((td) => td.id !== todo.id);
     setTodos(filteredTodo);
     localStorage.setItem("todos", JSON.stringify(filteredTodo));
+    toast.success("Todo deleted successfully");
   };
 
   return (
     <ModalContainer
-      title="Delete Modal"
+      title="Delete Todo"
       handleClose={() => setOpenDeleteModal((prev) => !prev)}
     >
       <div>
         <h3 className="text-center mb-6">
-          Are you sure want to delete is todo ?
+          Are you sure want to delete this todo ?
         </h3>
         <div className="flex justify-evenly">
           <button

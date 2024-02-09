@@ -9,35 +9,29 @@ const Tab = ({ tab, activeTab, hoveredTab, handler, setHoveredTab }) => {
       onMouseOver={() => setHoveredTab(tab.label)}
       onMouseLeave={() => setHoveredTab("")}
       data-active={hoveredTab == tab.label}
-      className={`px-4 py-1 text-center rounded-full relative z-10 whitespace-nowrap text-sm md:text-base ${
+      className={`px-4 py-1 text-center rounded-full relative z-10 whitespace-nowrap text-sm md:text-base space-x-1 last-of-type:space-x-0 ${
         activeTab == tab.label ? "text-black dark:text-white" : "text-white"
       }`}
     >
-      {tab.label ? tab.label : "All"}
+      <span>{tab.label}</span>
+      <span>{tab.count ? `(${tab.count})` : ""}</span>
       {activeTab == tab.label && (
         <m.div
-          className="absolute bottom-0 left-0 h-full w-full bg-secondary dark:bg-primary rounded-full -z-10"
+          className="absolute bottom-0 left-0 h-full w-full bg-primary rounded-full -z-10"
           layoutId="tab"
-          //   aria-hidden="true"
           transition={{
             type: "spring",
-            // bounce: 0.1,
-            // stiffness: 130,
-            // damping: 9,
             duration: 0.7,
           }}
         ></m.div>
       )}
       {hoveredTab == tab.label && (
         <m.div
-          className="absolute bottom-0 left-0 h-full w-full bg-neutral-700 dark:bg-primary/25 rounded-full -z-20"
+          className="absolute bottom-0 left-0 h-full w-full bg-primary/25 rounded-full -z-20"
           layoutId="tab-2"
           aria-hidden="true"
           transition={{
             type: "spring",
-            // bounce: 0.1,
-            // stiffness: 130,
-            // damping: 9,
             duration: 0.5,
           }}
         ></m.div>

@@ -2,12 +2,11 @@ import { useTodoContext } from "../context/TodoProvider";
 import Todo from "./Todo";
 
 const Todos = () => {
-  const { todos } = useTodoContext();
-  const filteredTodos = todos.filter((todo) => todo.status === "Incomplete");
+  const { incompleteTodos } = useTodoContext();
 
   return (
     <>
-      {filteredTodos.length > 0 ? (
+      {incompleteTodos.length > 0 ? (
         <div className="overflow-x-auto">
           <table className="bg-[#23252F] p-2 w-full">
             <thead className="bg-primary">
@@ -31,7 +30,7 @@ const Todos = () => {
             </thead>
 
             <tbody className="divide-y divide-[#1C1D24]">
-              {filteredTodos?.map((todo, index) => (
+              {incompleteTodos?.map((todo, index) => (
                 <Todo key={todo.id} index={index} todo={todo} />
               ))}
             </tbody>

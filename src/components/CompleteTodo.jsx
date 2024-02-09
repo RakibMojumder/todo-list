@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import DeleteTodoModal from "./modal/DeleteTodoModal";
+import { AnimatePresence } from "framer-motion";
 
 const CompleteTodo = ({ todo, index }) => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -37,9 +38,14 @@ const CompleteTodo = ({ todo, index }) => {
       </tr>
 
       {/* DELETE MODAL */}
-      {openDeleteModal && (
-        <DeleteTodoModal todo={todo} setOpenDeleteModal={setOpenDeleteModal} />
-      )}
+      <AnimatePresence>
+        {openDeleteModal && (
+          <DeleteTodoModal
+            todo={todo}
+            setOpenDeleteModal={setOpenDeleteModal}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 };

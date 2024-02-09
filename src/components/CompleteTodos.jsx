@@ -1,13 +1,11 @@
 import { useTodoContext } from "../context/TodoProvider";
 import CompleteTodo from "./CompleteTodo";
-import OngoingTodo from "./OngoingTodo";
 
 const CompleteTodos = () => {
-  const { todos } = useTodoContext();
-  const completedTodos = todos.filter((td) => td.status === "Completed");
+  const { completedTodos } = useTodoContext();
 
   return (
-    <>
+    <div>
       {completedTodos.length > 0 ? (
         <div className="overflow-x-auto">
           <table className="bg-[#23252F] p-2 w-full">
@@ -43,7 +41,7 @@ const CompleteTodos = () => {
           No Todo Founds
         </div>
       )}
-    </>
+    </div>
   );
 };
 
