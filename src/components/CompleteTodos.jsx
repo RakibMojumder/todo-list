@@ -1,13 +1,14 @@
 import { useTodoContext } from "../context/TodoProvider";
-import Todo from "./Todo";
+import CompleteTodo from "./CompleteTodo";
+import OngoingTodo from "./OngoingTodo";
 
-const Todos = () => {
+const CompleteTodos = () => {
   const { todos } = useTodoContext();
-  const filteredTodos = todos.filter((todo) => todo.status === "Incomplete");
+  const completedTodos = todos.filter((td) => td.status === "Completed");
 
   return (
     <>
-      {filteredTodos.length > 0 ? (
+      {completedTodos.length > 0 ? (
         <div className="overflow-x-auto">
           <table className="bg-[#23252F] p-2 w-full">
             <thead className="bg-primary">
@@ -31,8 +32,8 @@ const Todos = () => {
             </thead>
 
             <tbody className="divide-y divide-[#1C1D24]">
-              {filteredTodos?.map((todo, index) => (
-                <Todo key={todo.id} index={index} todo={todo} />
+              {completedTodos?.map((todo, index) => (
+                <CompleteTodo key={todo.id} index={index} todo={todo} />
               ))}
             </tbody>
           </table>
@@ -46,4 +47,4 @@ const Todos = () => {
   );
 };
 
-export default Todos;
+export default CompleteTodos;

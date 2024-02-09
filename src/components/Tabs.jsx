@@ -1,18 +1,8 @@
 /* eslint-disable react/prop-types */
 
-import { useState } from "react";
 import Tab from "./Tab";
 
-const tabs = [
-  { id: 1, label: "Todos" },
-  { id: 2, label: "Ongoing" },
-  { id: 3, label: "Completed" },
-];
-
-const Tabs = () => {
-  const [activeTab, setActiveTab] = useState("Todos");
-  const [hoveredTab, setHoveredTab] = useState("");
-
+const Tabs = ({ tabs, activeTab, setActiveTab, hoveredTab, setHoveredTab }) => {
   const handleActiveTab = (item) => {
     setActiveTab(item);
   };
