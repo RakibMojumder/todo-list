@@ -5,6 +5,7 @@ import OngoingTodos from "./OngoingTodos";
 import CompleteTodos from "./CompleteTodos";
 import { useTodoContext } from "../context/TodoProvider";
 import AddTodoModal from "./modal/AddTodoModal";
+import { AnimatePresence } from "framer-motion";
 
 const TodoContainer = () => {
   const [activeTab, setActiveTab] = useState("Todos");
@@ -31,9 +32,11 @@ const TodoContainer = () => {
         {activeTab === "Todos" && <Todos />}
         {activeTab === "Ongoing" && <OngoingTodos />}
         {activeTab === "Completed" && <CompleteTodos />}
-        {activeTab === "Add Todo" && (
-          <AddTodoModal setActiveTab={setActiveTab} />
-        )}
+        <AnimatePresence>
+          {activeTab === "Add Todo" && (
+            <AddTodoModal setActiveTab={setActiveTab} />
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

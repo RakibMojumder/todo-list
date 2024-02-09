@@ -4,9 +4,9 @@ export const TODO_CONTEXT = createContext();
 
 const TodoProvider = ({ children }) => {
   const [todos, setTodos] = useState([]);
-  const incompleteTodos = todos.filter((todo) => todo.status === "Incomplete");
-  const ongoingTodos = todos.filter((todo) => todo.status === "Ongoing");
-  const completedTodos = todos.filter((todo) => todo.status === "Completed");
+  const incompleteTodos = todos?.filter((todo) => todo.status === "Incomplete");
+  const ongoingTodos = todos?.filter((todo) => todo.status === "Ongoing");
+  const completedTodos = todos?.filter((todo) => todo.status === "Completed");
 
   useEffect(() => {
     const getTodos = () => {

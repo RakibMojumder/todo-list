@@ -27,7 +27,7 @@ const Tab = ({ tab, activeTab, hoveredTab, handler, setHoveredTab }) => {
       )}
       {hoveredTab == tab.label && (
         <m.div
-          className="absolute bottom-0 left-0 h-full w-full bg-primary/25 rounded-full -z-20"
+          className="absolute bottom-0 left-0 h-full w-full bg-primary/30 rounded-full -z-20"
           layoutId="tab-2"
           aria-hidden="true"
           transition={{

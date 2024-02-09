@@ -5,7 +5,7 @@ import { Toaster } from "sonner";
 const App = () => {
   return (
     <TodoProvider>
-      <div className="bg-[#14161B] min-h-svh w-full lg:py-12">
+      <div className="bg-[#14161B] min-h-svh w-full py-5 lg:py-12">
         <TodoContainer />
       </div>
       <Toaster
